@@ -8,7 +8,7 @@ const NoteApp = () => {
   const addNote = () => {
     let notes = { noteTitle: title, noteDescription: description };
 
-    setNoteList(...noteList, notes);
+    setNoteList([...noteList, notes]);
 
     setTitle("");
     setDescription("");
@@ -23,19 +23,29 @@ const NoteApp = () => {
       <br />
       <label>Note Title</label>
       <br />
-      <input type="text" onChange={(e) => setTitle(e.target.value)} />
+      <input
+        type="text"
+        onChange={(e) => setTitle(e.target.value)}
+        value={title}
+      />
       <br />
       <br />
-      <label>Note Title</label>
+      <label>Note Description</label>
       <br />
-      <input type="text" onChange={(e) => setDescription(e.target.value)} />
+      <textarea
+        type="text"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
       <br />
       <br />
       <button onClick={() => addNote()}>Add Note</button>
 
+      <h1>Notes</h1>
       {noteList.map((note) => {
         return (
           <div>
+            <hr />
             <h3>{note.noteTitle}</h3>
             <p>{note.noteDescription}</p>
           </div>
